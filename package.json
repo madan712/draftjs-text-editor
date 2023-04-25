@@ -1,11 +1,40 @@
 {
   "name": "draftjs-text-editor",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.6",
+  "description": "draftjs-text-editor is a lightweight wrapper around Draft.js, providing an easy-to-use rich text editor for React applications",
+  "main": "dist/draftjs-text-editor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madan712/draftjs-text-editor.git"
+  },
+  "author": "Madan Chaudhary",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.38",
+    "typescript": "^5.0.4"
+  },
+  "keywords": [
+    "draftjs-text-editor",
+    "draftjs",
+    "rich text editor",
+    "text editor",
+    "markdown editor",
+    "wysiwyg editor",
+    "content editor",
+    "block editor",
+    "inline editor",
+    "editor components",
+    "editor api"
+  ],
+  "bugs": {
+    "url": "https://github.com/madan712/draftjs-text-editor/issues"
+  },
+  "homepage": "https://github.com/madan712/draftjs-text-editor#readme",
+  "types": "./dist/draftjs-text-editor.d.ts"
 }
