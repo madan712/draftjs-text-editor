@@ -1,0 +1,7 @@
+.idea
+draftjs-text-editor.iml
+
+node_modules
+yarn.lock
+
+dist
