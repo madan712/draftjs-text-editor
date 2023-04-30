@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface StyledProps {
   selected?: boolean;
+  color?: string;
 }
 
 export const DsControlButton = styled.div<StyledProps>`
@@ -9,17 +10,20 @@ export const DsControlButton = styled.div<StyledProps>`
   border: none;
   border-radius: 0;
   cursor: pointer;
-  color: grey;
+  color: ${(props: StyledProps) => (props.selected ? "#ffffff" : "#808080")};
   outline: none;
-  background-color: ${(props: { selected?: boolean }) =>
-    props.selected ? "#cccccc" : "#ffffff"};
+  background-color: ${(props: StyledProps) =>
+    props.selected ? (props.color ? props.color : "#808080") : "#ffffff"};
   &:hover {
-    background-color: #cccccc;
+    background-color: ${(props: StyledProps) =>
+      props.color ? props.color : "#D3D3D3"};
+    color: #ffffff;
   }
 `;
 
 export const DsHeader = styled.div<StyledProps>`
-  border: 2px solid #cccccc;
+  border: 2px solid
+    ${(props: StyledProps) => (props.color ? props.color : "#808080")};
   border-bottom: 0;
   display: flex;
   flex-direction: row;
@@ -28,11 +32,13 @@ export const DsHeader = styled.div<StyledProps>`
 export const DsControl = styled.div<StyledProps>`
   display: flex;
   flex-direction: row;
-  border-right: 2px solid #cccccc;
+  border-right: 2px solid
+    ${(props: StyledProps) => (props.color ? props.color : "#808080")};
 `;
 
 export const DsEditor = styled.div<StyledProps>`
-  border: 2px solid #cccccc;
+  border: 2px solid
+    ${(props: StyledProps) => (props.color ? props.color : "#808080")};
   padding: 5px;
   overflow: auto;
   flex: 1;

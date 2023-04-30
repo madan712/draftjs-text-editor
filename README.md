@@ -45,5 +45,6 @@ export default App;
 | Prop                    | Type     | Required | Default | Description                                                   |
 | :---------------------- | :------- | :------: | :-----: | :------------------------------------------------------------ |
 | [`onChange`](#onChange) | Function |    ✓     |         | This function is used to capture the html code of text editor |
+| [`color`](#color)       | String   |          | #808080 | Color theme of the text editor                                |
 
 Note: This package is still under development and we welcome contributions from the community. If you would like to contribute, please visit our [`Git repository`](https://github.com/madan712/draftjs-text-editor) and send us a pull request. We appreciate all contributions and thank you for your support!

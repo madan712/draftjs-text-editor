@@ -21,9 +21,10 @@ import { blockControls, inlineControls } from "./draftjs-constants";
 
 interface DraftJsEditorProps {
   onChange: (html: string) => void;
+  color?: string;
 }
 
-const DraftJsEditor = ({ onChange }: DraftJsEditorProps) => {
+const DraftJsEditor = ({ onChange, color = "#808080" }: DraftJsEditorProps) => {
   const decorator = new CompositeDecorator([
     {
       strategy: findLinkEntities,
@@ -104,14 +105,15 @@ const DraftJsEditor = ({ onChange }: DraftJsEditorProps) => {
 
   return (
     <DsContainer>
-      <DsHeader>
-        <DsControl>
+      <DsHeader color={color}>
+        <DsControl color={color}>
           {inlineControls.map((control, index) => {
             const currentStyle = editorState.getCurrentInlineStyle();
 
             return (
               <DsControlButton
                 selected={currentStyle.has(control.name)}
+                color={color}
                 key={index}
                 onClick={() => toggleInlineStyle(control.name)}
               >
@@ -122,12 +124,13 @@ const DraftJsEditor = ({ onChange }: DraftJsEditorProps) => {
 
           <DsControlButton
             selected={isLinkSelected(editorState)}
+            color={color}
             onClick={onLinkClick}
           >
             <FaLink />
           </DsControlButton>
         </DsControl>
-        <DsControl>
+        <DsControl color={color}>
           {blockControls.map((control, index) => {
             const selection = editorState.getSelection();
             const blockType = editorState
@@ -138,6 +141,7 @@ const DraftJsEditor = ({ onChange }: DraftJsEditorProps) => {
             return (
               <DsControlButton
                 selected={control.name === blockType}
+                color={color}
                 key={index}
                 onClick={() => toggleBlockType(control.name)}
               >
@@ -147,7 +151,7 @@ const DraftJsEditor = ({ onChange }: DraftJsEditorProps) => {
           })}
         </DsControl>
       </DsHeader>
-      <DsEditor>
+      <DsEditor color={color}>
         <Editor
           editorState={editorState}
           onChange={onEditorChange}

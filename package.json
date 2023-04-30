@@ -1,6 +1,6 @@
 {
   "name": "draftjs-text-editor",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "draftjs-text-editor is a lightweight wrapper around Draft.js, providing an easy-to-use rich text editor for React applications",
   "main": "dist/draftjs-text-editor.js",
   "types": "dist/draftjs-text-editor.d.ts",
