@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 interface StyledProps {
-  color?: string;
   selected?: boolean;
 }
 
@@ -15,7 +14,7 @@ export const DsControlButton = styled.div<StyledProps>`
   background-color: ${(props: { selected?: boolean }) =>
     props.selected ? "#cccccc" : "#ffffff"};
   &:hover {
-    background-color: ${(props: { color?: string }) => props.color};
+    background-color: #cccccc;
   }
 `;
 
