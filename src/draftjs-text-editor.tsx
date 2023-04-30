@@ -8,21 +8,22 @@ import {
 } from "draft-js";
 
 import {
-  ControlButton,
-  editorStyles,
-  headerStyles,
-  controlStyle,
+  DsControlButton,
+  DsHeader,
+  DsControl,
+  DsEditor,
+  DsContainer,
 } from "./draftjs-styles";
 import { FaLink } from "react-icons/fa";
 import draftToHtml from "draftjs-to-html";
-import { findLinkEntities, Link } from "./draftjs-link";
+import { findLinkEntities, isLinkSelected, Link } from "./draftjs-link";
 import { blockControls, inlineControls } from "./draftjs-constants";
 
 interface DraftJsEditorProps {
-  onChange: (selected: string) => void;
+  onChange: (html: string) => void;
 }
 
-const DraftJsEditor = (props: DraftJsEditorProps) => {
+const DraftJsEditor = ({ onChange }: DraftJsEditorProps) => {
   const decorator = new CompositeDecorator([
     {
       strategy: findLinkEntities,
@@ -98,91 +99,63 @@ const DraftJsEditor = (props: DraftJsEditorProps) => {
     const contentState = es.getCurrentContent();
     const rawContentState = convertToRaw(contentState);
     const html = draftToHtml(rawContentState);
-    props.onChange(html);
-  };
-
-  const isLinkSelectedAtText = (): boolean => {
-    const selection = editorState.getSelection();
-    if (!selection.isCollapsed()) {
-      const contentState = editorState.getCurrentContent();
-      const block = contentState.getBlockForKey(selection.getStartKey());
-      const entity = block.getEntityAt(selection.getStartOffset());
-      if (entity) {
-        const entityInstance = contentState.getEntity(entity);
-        return entityInstance.getType() === "LINK";
-      }
-    }
-    return false;
-  };
-
-  const isLinkSelectedAtCursor = (): boolean => {
-    const selection = editorState.getSelection();
-    if (selection.isCollapsed()) {
-      const contentState = editorState.getCurrentContent();
-      const block = contentState.getBlockForKey(selection.getStartKey());
-      const entity = block.getEntityAt(selection.getStartOffset() - 1);
-      if (entity) {
-        const entityInstance = contentState.getEntity(entity);
-        return entityInstance.getType() === "LINK";
-      }
-    }
-    return false;
-  };
-
-  const isLinkSelected = (): boolean => {
-    return isLinkSelectedAtCursor() || isLinkSelectedAtText();
+    onChange(html);
   };
 
   return (
-    <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      <div style={headerStyles}>
-        <div style={controlStyle}>
+    <DsContainer>
+      <DsHeader>
+        <DsControl>
           {inlineControls.map((control, index) => {
             const currentStyle = editorState.getCurrentInlineStyle();
 
             return (
-              <ControlButton
+              <DsControlButton
                 selected={currentStyle.has(control.name)}
                 key={index}
                 onClick={() => toggleInlineStyle(control.name)}
               >
                 {control.icon}
-              </ControlButton>
+              </DsControlButton>
             );
           })}
 
-          <ControlButton selected={isLinkSelected()} onClick={onLinkClick}>
+          <DsControlButton
+            selected={isLinkSelected(editorState)}
+            onClick={onLinkClick}
+          >
             <FaLink />
-          </ControlButton>
-        </div>
-        <div style={controlStyle}>
+          </DsControlButton>
+        </DsControl>
+        <DsControl>
           {blockControls.map((control, index) => {
             const selection = editorState.getSelection();
             const blockType = editorState
               .getCurrentContent()
               .getBlockForKey(selection.getStartKey())
               .getType();
+
             return (
-              <ControlButton
+              <DsControlButton
                 selected={control.name === blockType}
                 key={index}
                 onClick={() => toggleBlockType(control.name)}
               >
                 {control.icon}
-              </ControlButton>
+              </DsControlButton>
             );
           })}
-        </div>
-      </div>
-      <div style={editorStyles}>
+        </DsControl>
+      </DsHeader>
+      <DsEditor>
         <Editor
           editorState={editorState}
           onChange={onEditorChange}
           handleKeyCommand={handleKeyCommand}
           ref={editorRef}
         />
-      </div>
-    </div>
+      </DsEditor>
+    </DsContainer>
   );
 };
 

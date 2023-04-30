@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 type ControlType = {
-  icon: React.ReactElement;
+  icon: JSX.Element;
   name: string;
 };
 
