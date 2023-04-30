@@ -1,6 +1,6 @@
-# Rich text editor using DraftJs
+# A simple rich text editor using DraftJs
 
-This project is a simple example of a rich HTML text area with line numbers and a copy icon. The text area allows users to input and edit code, with line numbers to aid readability, and a copy button for easy sharing.
+This simple rich text editor is built using [`Draft.js`](https://draftjs.org/) and offers basic controls such as bold, italic, and underline. It provides users with a familiar and intuitive editing experience, allowing them to easily apply text formatting and styling to their content. While it may not have all the advanced features of more complex rich text editors, this editor is a great starting point for developers looking to create a custom text editor with basic formatting capabilities.
 
 Please see the [`DEMO`](https://stackutils.com/#/text2pdf) here
 
