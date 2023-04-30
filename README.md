@@ -1,4 +1,4 @@
-# A simple react rich html textarea
+# Rich text editor using DraftJs
 
 This project is a simple example of a rich HTML text area with line numbers and a copy icon. The text area allows users to input and edit code, with line numbers to aid readability, and a copy button for easy sharing.
 
